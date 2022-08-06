@@ -1,0 +1,39 @@
+<?php
+
+namespace Routage;
+
+const GET = "GET";
+const POST = "POST";
+
+class Route
+{
+    private string $url;
+    private string $methodeHttp;
+    private string $cheminRessource;
+
+    public function __construct(string $url, string $methodeHttp, string $cheminRessource)
+    {
+        if ($methodeHttp != GET && $methodeHttp != POST)
+        {
+            throw  new \InvalidArgumentException("Pour une route, vous devez utiliser les méthodes GET ou POST");
+        }
+        $this->url = $url;
+        $this->methodeHttp = $methodeHttp;
+        $this->cheminRessource = $cheminRessource;
+    }
+
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+
+    public function getMethodeHttp(): string
+    {
+        return $this->methodeHttp;
+    }
+
+    public function getCheminRessource(): string
+    {
+        return $this->cheminRessource;
+    }
+}

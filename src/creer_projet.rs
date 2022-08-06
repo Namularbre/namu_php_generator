@@ -88,7 +88,7 @@ impl ArborescenceProjet{
         println!("Création de la vue d'entrée");
 
         File::create(chemin_fichier_vue_entree).expect("Il y a eu une erreur durant la création de la vue d'entrée de l'application (accueil.php)");
-        //TODO : Faire des fichiers contenant le code, qui sera copier-coller dans les fichiers.
+
         let contenue_vue_entree = read_to_string("samples\\accueil.php.sample").expect("Il y a eu une erreur durant la lecture du sample du code d'accueil.php");
 
         write(chemin_fichier_vue_entree_clone, contenue_vue_entree).expect("Il y a eu une erreur durant l'écriture du contenue de la vue d'entrée.");
