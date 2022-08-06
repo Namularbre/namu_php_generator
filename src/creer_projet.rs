@@ -2,7 +2,6 @@ use std::fs::create_dir_all;
 use std::fs::File;
 use std::fs::write;
 use std::fs::read_to_string;
-use std::str::from_utf8;
 
 pub struct ArborescenceProjet{
     racine : String,
