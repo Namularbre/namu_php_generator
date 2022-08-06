@@ -1,0 +1,15 @@
+<?php
+require ("routage/Routeur.php");
+
+$urlDemandee = $_SERVER["REQUEST_URI"];
+$methodeHttp = $_SERVER["REQUEST_METHOD"];
+
+$routes = [
+    new \Routage\Route("/", \Routage\GET,"vues/accueil.php"),
+];
+
+$routeur = new \Routage\Routeur($routes);
+
+$cheminRessource = $routeur->trouverRoute($urlDemandee, $methodeHttp);
+
+require ($cheminRessource);
