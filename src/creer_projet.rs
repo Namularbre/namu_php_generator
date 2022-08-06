@@ -53,7 +53,9 @@ impl ArborescenceProjet{
         //Le chemin des fichiers "par défaut" du framework.
         let chemin_fichier_index = self.avoir_racine() + "/index.php";
         let chemin_fichier_index_clone = chemin_fichier_index.clone();
+
         let chemin_fichier_information = self.avoir_racine() + "/namu_php_framework.info";
+        let chemin_fichier_information_clone = chemin_fichier_information.clone();
         /*
             On créer index.php, le fichier qui contiendra les routes de l'application et fera appel au routeur ainsi que
             le fichier d'information, un fichier utiliser par le framework pour savoir dans quel fichier il se trouve, etc.
@@ -66,6 +68,8 @@ impl ArborescenceProjet{
         let contenu_fichier_sample_index = read_to_string("samples\\index.php.sample").expect("Il y a eu une erreur durant la lecturedu sample d'index.php");
 
         write(chemin_fichier_index_clone, contenu_fichier_sample_index).expect("Il y a eu une erreur durant l'écriture du contenu du fichier index.php");
+
+        write(chemin_fichier_information_clone, self.avoir_racine()).expect("Il y a eu une erreur durant l'écriture du fichier d'information du framework.");
 
         println!("fini.");
 
