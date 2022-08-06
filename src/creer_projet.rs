@@ -52,6 +52,7 @@ impl ArborescenceProjet{
     fn creer_fichier_par_defaut(&self) -> std::io::Result<()>{
         //Le chemin des fichiers "par défaut" du framework.
         let chemin_fichier_index = self.avoir_racine() + "/index.php";
+        let chemin_fichier_index_clone = chemin_fichier_index.clone();
         let chemin_fichier_information = self.avoir_racine() + "/namu_php_framework.info";
         /*
             On créer index.php, le fichier qui contiendra les routes de l'application et fera appel au routeur ainsi que
@@ -62,6 +63,10 @@ impl ArborescenceProjet{
         File::create(chemin_fichier_index).expect("Il y a eu une erreur durant la création du fichier d'entrée de l'application.");
         File::create(chemin_fichier_information).expect("Il y a eu une erreur durant la création du fichier contenant les données nécessaires au fonctionnement du framework");
         
+        let contenu_fichier_sample_index = read_to_string("samples\\index.php.sample").expect("Il y a eu une erreur durant la lecturedu sample d'index.php");
+
+        write(chemin_fichier_index_clone, contenu_fichier_sample_index).expect("Il y a eu une erreur durant l'écriture du contenu du fichier index.php");
+
         println!("fini.");
 
         return Ok(());
