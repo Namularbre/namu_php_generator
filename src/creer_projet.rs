@@ -1,6 +1,8 @@
 use std::fs::create_dir_all;
 use std::fs::File;
 use std::fs::write;
+use std::fs::read_to_string;
+use std::str::from_utf8;
 
 pub struct ArborescenceProjet{
     racine : String,
@@ -87,18 +89,9 @@ impl ArborescenceProjet{
 
         File::create(chemin_fichier_vue_entree).expect("Il y a eu une erreur durant la création de la vue d'entrée de l'application (accueil.php)");
         //TODO : Faire des fichiers contenant le code, qui sera copier-coller dans les fichiers.
-        let contenue_vue_entree = 
-        "<!DOCTYPE html>\n<html lang=\"fr\">
-        \n<head>
-        \n    <meta charset=\"UTF-8\">
-        \n    <title>accueil</title>\n</head>\n<body>
-        \n    <div class='conteneur'>
-        \n        <p>ça marche !</p>
-        \n    </div>
-        \n</body>
-        \n</html>";
+        let contenue_vue_entree = read_to_string("samples\\accueil.php.sample").expect("Il y a eu une erreur durant la lecture du sample du code d'accueil.php");
 
-        write(chemin_fichier_vue_entree_clone, contenue_vue_entree.trim()).expect("Il y a eu une erreur durant l'écriture du contenue de la vue d'entrée.");
+        write(chemin_fichier_vue_entree_clone, contenue_vue_entree).expect("Il y a eu une erreur durant l'écriture du contenue de la vue d'entrée.");
 
         println!("fini.");
         return Ok(());

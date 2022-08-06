@@ -1,0 +1,35 @@
+<?php
+
+namespace Routage;
+
+require("Route.php");
+
+const FILTRE_URL = "index.php?p=";
+
+class Routeur
+{
+    private array $routes;
+    
+    public function __construct(array $routes)
+    {
+        $this->routes = $routes;
+    }
+
+    public function trouverRoute(string $urlDemandee, string $methode) : string
+    {
+        $url = $this->filtrerUrl($urlDemandee);
+        foreach ($this->routes as $route)
+        {
+            if ($route->getUrl() == $url && $route->getMethodeHttp() == $methode)
+            {
+                return $route->getCheminRessource();
+            }
+        }
+        throw new \InvalidArgumentException("L'URL et la méthode donnée ne mène à rien." . $urlDemandee . " " . $url);
+    }
+
+    private function filtrerUrl(string $urlDemandee) : string
+    {
+        return str_replace(FILTRE_URL, '', $urlDemandee);
+    }
+}
