@@ -71,11 +71,20 @@ impl ArborescenceProjet{
     fn creer_fichier_routage(&self) -> std::io::Result<()>{
         let chemin_fichier_routeur = self.avoir_racine() + "/routage/Routeur.php";
         let chemin_fichier_route = self.avoir_racine() + "/routage/Route.php";
+
+        let chemin_fichier_route_clone = chemin_fichier_route.clone();
+        let chemin_fichier_routeur_clone = chemin_fichier_routeur.clone();
         //On remplis le dossier "routage" avec une classe pour les routes et une pour le routeur.
         println!("Création des fichiers utiliser pour le routage...");
         File::create(chemin_fichier_routeur).expect("Il y a eu une erreur durant la création du fichier contenant la classe du routeur");
         File::create(chemin_fichier_route).expect("Il y a eu une erreur durant la création du fichier contenant la classe des routes");
         
+        let contenu_fichier_routeur = read_to_string("samples\\routeur.php.sample").expect("Il y a eu une erreur durant la lecture du contenu du fichier sample du routeur");
+        let contenu_fichier_route = read_to_string("samples\\route.php.sample").expect("Il y  a eu une erreur durant la lecture du contenu du fichier sample de la classe des routes");
+
+        write(chemin_fichier_route_clone, contenu_fichier_route).expect("Il y a eu une erreur durant le remplissage du fichier de la classe des routes");
+        write(chemin_fichier_routeur_clone, contenu_fichier_routeur).expect("Il y a eu une erreur durant le remplisage du fichier de la classe du routeur");
+
         println!("fini.");
 
         return Ok(());
@@ -89,9 +98,9 @@ impl ArborescenceProjet{
 
         File::create(chemin_fichier_vue_entree).expect("Il y a eu une erreur durant la création de la vue d'entrée de l'application (accueil.php)");
 
-        let contenue_vue_entree = read_to_string("samples\\accueil.php.sample").expect("Il y a eu une erreur durant la lecture du sample du code d'accueil.php");
+        let contenu_vue_entree = read_to_string("samples\\accueil.php.sample").expect("Il y a eu une erreur durant la lecture du sample du code d'accueil.php");
 
-        write(chemin_fichier_vue_entree_clone, contenue_vue_entree).expect("Il y a eu une erreur durant l'écriture du contenue de la vue d'entrée.");
+        write(chemin_fichier_vue_entree_clone, contenu_vue_entree).expect("Il y a eu une erreur durant l'écriture du contenu de la vue d'entrée.");
 
         println!("fini.");
         return Ok(());

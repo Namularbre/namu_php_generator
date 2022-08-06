@@ -25,7 +25,7 @@ class Routeur
                 return $route->getCheminRessource();
             }
         }
-        throw new \InvalidArgumentException("L'URL et la méthode donnée ne mène à rien." . $urlDemandee . " " . $url);
+        throw new \InvalidArgumentException("L'URL et la methode donnee ne mene a rien." . $urlDemandee . " " . $url);
     }
 
     private function filtrerUrl(string $urlDemandee) : string
