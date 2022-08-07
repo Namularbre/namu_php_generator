@@ -4,6 +4,7 @@ use std::io::{self};
 //import des modules
 mod creer_projet;
 mod creer_connexion_bdd;
+mod supprimer_projet;
 
 #[derive(StructOpt)]
 struct Options{
@@ -26,5 +27,12 @@ fn main() {
         let mdp_uti = options.parametres[3].clone();
         let racine = std::fs::read_to_string("C:/Users/namul/testage/namu_php_framework.info").unwrap();
         creer_connexion_bdd::creer_connexion_bdd(racine ,hote, nom_bdd, utilisateur, mdp_uti);
+    }
+    else if options.action == "supprimer" || options.action == "s"{
+        let racine = options.parametres[0].clone();
+        supprimer_projet::supprimer_projet(racine);
+    }
+    else{
+        println!("L'action choisi n'est pas reconnue :/");
     }
 }
