@@ -1,0 +1,36 @@
+<?php
+
+class BDD
+{
+    private PDO $connexion;
+
+    public function __construct()
+    {
+        try
+        {
+            $this->connexion = new PDO("mysql:host=". "HOTE" . ";dbname=" . "NOM_BDD", "UTILISATEUR", "MDP");
+        }
+        catch (PDOException $exception)
+        {
+            echo $exception->getMessage();
+            die;
+        }
+    }
+
+    public function deconnecter() : void
+    {
+        unset($this->connexion);
+    }
+
+    public function faireRequete(string $requeteSQL) : bool|array
+    {
+        $ressource = $this->connexion->prepare($requeteSQL);
+        $ressource->execute();
+        return $ressource->fetchAll();
+    }
+
+    public function netoyerTexte(string $texte) : string
+    {
+        return mysqli_escape_string(mysqli_connect("HOTE", "UTILISATEUR", "MDP", "NOM_BDD"), $texte);
+    }
+}
