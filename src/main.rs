@@ -20,7 +20,7 @@ fn main() {
         arborescence.creer_arborescence().expect("Il y a eu une erreur durant la création du nouveau projet.");
         println!("Votre projet est prêt ! Il vous attends :3");
     }
-    else if options.action == "connexion_bdd" || options.action == "con_bdd"{
+    else if options.action == "connexion_bdd" || options.action == "bdd"{
         let hote = options.parametres[0].clone();
         let nom_bdd = options.parametres[1].clone();
         let utilisateur = options.parametres[2].clone();
