@@ -1,5 +1,4 @@
 use structopt::StructOpt;
-use std::io::{self};
 
 //import des modules
 mod creer_projet;
