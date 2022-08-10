@@ -1,5 +1,4 @@
 pub fn supprimer_projet(nom : String){
-    let contenu_fichier = std::fs::read_to_string("projets\\projets.info").expect("Erreur durant la lecture du fichier listant les projets du framework.");
     let contenu_fichier_sans_projet = enlever_la_ligne_du_projet_dans_fichier_information(nom);
     
     if !contenu_fichier_sans_projet.is_empty(){
