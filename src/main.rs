@@ -16,7 +16,9 @@ fn main() {
     let options = Options::from_args();
 
     if options.action == "nouveau" || options.action == "n" {
-        let arborescence = creer_projet::ArborescenceProjet::new(options.parametres[0].clone());
+        let chemin_projet = options.parametres[0].clone();
+        let nom_projet = options.parametres[1].clone();
+        let arborescence = creer_projet::ArborescenceProjet::new(chemin_projet, nom_projet);
         arborescence.creer_arborescence().expect("Il y a eu une erreur durant la création du nouveau projet.");
         println!("Votre projet est prêt ! Il vous attends :3");
     }

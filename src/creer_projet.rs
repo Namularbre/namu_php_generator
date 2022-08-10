@@ -5,12 +5,14 @@ use std::fs::read_to_string;
 
 pub struct ArborescenceProjet{
     racine : String,
+    nom : String,
 }
 
 impl ArborescenceProjet{
-    pub fn new(racine : String) -> Self{
+    pub fn new(racine : String, nom : String) -> Self{
         return Self{
             racine,
+            nom,
         }
     }
 
@@ -18,11 +20,16 @@ impl ArborescenceProjet{
         return self.racine.clone();
     }
 
+    fn avoir_nom(&self) -> String{
+        return self.nom.clone();
+    }
+
     pub fn creer_arborescence(&self) -> std::io::Result<()>{
         self.creer_dossier_arborescence_par_defaut().expect("Il y a eu une erreur durant la création des dossiers composant l'arborescence par défault");
         self.creer_fichier_par_defaut().expect("Il y a eu une erreur durant la création des fichiers par défaut du framework.");
         self.creer_fichier_routage().expect("Il y a eu une erreur durant la création des classes Route et Routeur.");
         self.creer_vue_entree().expect("Il y a eu une erreur durant la création de la vue d'entrée de l'application.");
+        self.enregistrer_information_projet(self.avoir_racine(), self.avoir_nom());
 
         return Ok(());
     }
@@ -112,5 +119,10 @@ impl ArborescenceProjet{
 
         println!("fini.");
         return Ok(());
+    }
+
+    fn enregistrer_information_projet(&self, racine : String, nom : String){
+        let ligne_a_ecrire = nom + " " + &racine;
+        write("projets\\projets.info", ligne_a_ecrire).expect("Erreur durant l'enregistrement du projet");
     }
 }
