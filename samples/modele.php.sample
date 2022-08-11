@@ -1,0 +1,19 @@
+<?php
+
+require("connexion_bdd/Bdd.php");
+
+class MODELE
+{
+    private BDD $bdd;
+
+    public function __construct()
+    {
+        $this->bdd = new BDD();
+    }
+
+    public function deconnecterBDD()
+    {
+        $this->bdd->deconnecter();
+        unset($this->bdd);
+    }
+}

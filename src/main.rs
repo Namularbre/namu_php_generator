@@ -4,6 +4,7 @@ use structopt::StructOpt;
 mod creer_projet;
 mod creer_connexion_bdd;
 mod supprimer_projet;
+mod creer_modele;
 
 #[derive(StructOpt)]
 struct Options{
@@ -33,6 +34,12 @@ fn main() {
     else if options.action == "supprimer" || options.action == "s"{
         let racine = options.parametres[0].clone();
         supprimer_projet::supprimer_projet(racine);
+    }
+    else if options.action == "creer_modeles" || options.action == "cm"{
+        let nom_modele = options.parametres[0].clone();
+        let nom_projet = options.parametres[1].clone();
+        let chemin_projet = trouver_chemin_projet(nom_projet);
+        creer_modele::creer_modeles(nom_modele, chemin_projet);
     }
     else{
         println!("L'action choisi n'est pas reconnue :/");
