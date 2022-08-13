@@ -5,6 +5,7 @@ mod creer_projet;
 mod creer_connexion_bdd;
 mod supprimer_projet;
 mod creer_modele;
+mod action;
 
 #[derive(StructOpt)]
 struct Options{
@@ -21,7 +22,6 @@ fn main() {
         arborescence.creer_arborescence().expect("Il y a eu une erreur durant la création du nouveau projet.");
         println!("Votre projet est prêt ! Il vous attends :3");
     }
-    //Pourquoi ça marche pas ?
     else if options.action == "connexion_bdd" || options.action == "bdd"{
         let hote = options.parametres[0].clone();
         let nom_bdd = options.parametres[1].clone();
@@ -35,7 +35,7 @@ fn main() {
         let racine = options.parametres[0].clone();
         supprimer_projet::supprimer_projet(racine);
     }
-    else if options.action == "creer_modeles" || options.action == "cm"{
+    else if options.action == "creer_modele" || options.action == "cm"{
         let nom_modele = options.parametres[0].clone();
         let nom_projet = options.parametres[1].clone();
         let chemin_projet = trouver_chemin_projet(nom_projet);
