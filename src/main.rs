@@ -49,7 +49,7 @@ fn main() {
 
 fn trouver_chemin_projet(nom_projet : String) -> String{
     let lignes_fichier_info = avoir_contenu_fichier_information();
-
+    //Pour chaque ligne, on regarde laquelle contient le nom du projet, puis on récupère le chemin de celui-ci.
     for ligne in lignes_fichier_info.lines(){
         if ligne.contains(&nom_projet){
             let mut iterateur = ligne.split_whitespace();
