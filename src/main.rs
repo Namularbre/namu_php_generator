@@ -50,16 +50,9 @@ fn trouver_chemin_projet(nom_projet : String) -> String{
     let lignes_fichier_info = std::fs::read_to_string("projets\\projets.info").unwrap();
     for ligne in lignes_fichier_info.lines(){
         if ligne.contains(&nom_projet){
-            //let mut iteration = 0;
             let mut iterateur = ligne.split_whitespace();
             iterateur.next();
             return String::from(iterateur.next().unwrap());
-            /*for champs in ligne.split_whitespace(){
-                if iteration == 1{
-                    return champs.to_owned();
-                }
-                iteration += 1;
-            }*/
         }
     }
     panic!("Impossible de trouver le chemin du projet.");
