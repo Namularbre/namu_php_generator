@@ -62,5 +62,5 @@ fn trouver_chemin_projet(nom_projet : String) -> String{
 }
 
 fn avoir_contenu_fichier_information() -> String{
-    return std::fs::read_to_string("projets\\projets.info").unwrap();
+    return std::fs::read_to_string("projets/projets.info").unwrap();
 }
