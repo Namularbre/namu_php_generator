@@ -5,7 +5,6 @@ mod creer_projet;
 mod creer_connexion_bdd;
 mod supprimer_projet;
 mod creer_modele;
-mod action;
 
 #[derive(StructOpt)]
 struct Options{
@@ -23,7 +22,7 @@ fn main() {
         println!("Votre projet est prêt ! Il vous attends :3");
     }
     else if options.action == "connexion_bdd" || options.action == "bdd"{
-        let hote = options.parametres[0].clone();
+        let hote = options.parametres[0].clone(); 
         let nom_bdd = options.parametres[1].clone();
         let utilisateur = options.parametres[2].clone();
         let mdp_uti = options.parametres[3].clone();
@@ -39,7 +38,7 @@ fn main() {
         let nom_modele = options.parametres[0].clone();
         let nom_projet = options.parametres[1].clone();
         let chemin_projet = trouver_chemin_projet(nom_projet);
-        creer_modele::creer_modeles(nom_modele, chemin_projet);
+        creer_modele::creer_modele(nom_modele, chemin_projet);
     }
     else{
         println!("L'action choisi n'est pas reconnue :/");

@@ -4,7 +4,7 @@ use std::fs::read_to_string;
 use std::fs::write;
 use std::fs::File;
 
-pub fn creer_modeles(nom_modele : String, chemin_projet : String){
+pub fn creer_modele(nom_modele : String, chemin_projet : String){
     verifier_que_dossier_modeles_existe(chemin_projet.clone());
     println!("Création du fichier...");
     let chemin_modele = chemin_projet + "/modeles/" + &nom_modele + ".php";
