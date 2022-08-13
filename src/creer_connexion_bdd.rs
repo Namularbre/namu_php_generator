@@ -2,9 +2,9 @@ use std::fs::create_dir_all;
 use std::fs::File;
 use std::fs::write;
 
-pub fn creer_connexion_bdd(racine : String, hote : String, nom_bdd : String, utilisateur : String, code : String){
+pub fn creer_connexion_bdd(chemin_projet : String, hote : String, nom_bdd : String, utilisateur : String, code : String){
     println!("Création du dossier pour la connexion...");
-    let chemin_dossier_connexion_bdd = racine.clone() + "/connexion_bdd";
+    let chemin_dossier_connexion_bdd = chemin_projet.clone() + "/connexion_bdd";
     create_dir_all(chemin_dossier_connexion_bdd.clone()).expect("Erreur durant la création du dossier qui contiendra le système de connexion à la base de données.");
     println!("fin");
 

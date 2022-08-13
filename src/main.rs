@@ -27,8 +27,8 @@ fn main() {
         let utilisateur = options.parametres[2].clone();
         let mdp_uti = options.parametres[3].clone();
         let nom_projet = options.parametres[4].clone();
-        let racine = trouver_chemin_projet(nom_projet);
-        creer_connexion_bdd::creer_connexion_bdd(racine ,hote, nom_bdd, utilisateur, mdp_uti);
+        let chemin_projet = trouver_chemin_projet(nom_projet);
+        creer_connexion_bdd::creer_connexion_bdd(chemin_projet ,hote, nom_bdd, utilisateur, mdp_uti);
     }
     else if options.action == "supprimer" || options.action == "s"{
         let nom_projet = options.parametres[0].clone();
