@@ -28,21 +28,16 @@ fn enlever_la_ligne_du_projet_dans_fichier_information(nom : String){
                 contenu_fichier_sans_projet = contenu_fichier_sans_projet + ligne;
             }
             else{
-                let mut iteration = 0;
-                let mut chemin_projet = String::new();
-                for champ in ligne.split_whitespace(){
-                    if iteration == 1{
-                        chemin_projet = chemin_projet + champ;
-                        supprimer_fichier_projet(chemin_projet.clone());
-                    }
-                    iteration += 1;
-                }
+                let mut iterateur = ligne.split_whitespace();
+                iterateur.next();
+                let chemin_projet = String::from(iterateur.next().unwrap());
+                supprimer_fichier_projet(chemin_projet);
             }
         }
         remplacer_fichier_information(contenu_fichier_sans_projet.clone());
     }
     else{
-        panic!("Le projet est introuvable");
+        panic!("Le projet est introuvable. Vous avez peut-être fait une faute de frappe ?");
     }
 }
 //On vérifie que le nom du projet et dans le contenu du fichier.
