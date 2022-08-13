@@ -30,6 +30,7 @@ fn avoir_chemin_fichier_classe_bdd(chemin_projet : String) -> String{
 }
 
 fn preparer_contenu_classe_bdd(hote : String, nom_bdd : String, utilisateur : String, code : String) -> String{
+    println!("Préparation du contenu de la classe Bdd avec les informations que vous avez donné.");
     let mut contenu_sample_fichier_bdd = std::fs::read_to_string("samples/bdd.php.sample").unwrap();
     contenu_sample_fichier_bdd = str::replace(&contenu_sample_fichier_bdd, "HOTE", &hote);
     contenu_sample_fichier_bdd = str::replace(&contenu_sample_fichier_bdd, "NOM_BDD", &nom_bdd);
@@ -40,6 +41,7 @@ fn preparer_contenu_classe_bdd(hote : String, nom_bdd : String, utilisateur : St
 }
 
 fn remplir_fichier_classe_bdd(contenu_fichier_bdd : String, chemin_fichier_classe_bdd : String) -> std::io::Result<()>{
+    println!("Remplissage du fichier connexion_bdd/Bdd.php");
     write(chemin_fichier_classe_bdd, contenu_fichier_bdd).expect("Erreur durant le remplissage du fichier de la classe BDD.");
     return Ok(());
 }
