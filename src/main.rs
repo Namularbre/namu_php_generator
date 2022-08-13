@@ -31,8 +31,9 @@ fn main() {
         creer_connexion_bdd::creer_connexion_bdd(racine ,hote, nom_bdd, utilisateur, mdp_uti);
     }
     else if options.action == "supprimer" || options.action == "s"{
-        let racine = options.parametres[0].clone();
-        supprimer_projet::supprimer_projet(racine);
+        let nom_projet = options.parametres[0].clone();
+        let chemin_projet = trouver_chemin_projet(nom_projet.clone());
+        supprimer_projet::supprimer_projet(nom_projet, chemin_projet);
     }
     else if options.action == "creer_modele" || options.action == "cm"{
         let nom_modele = options.parametres[0].clone();
@@ -49,13 +50,16 @@ fn trouver_chemin_projet(nom_projet : String) -> String{
     let lignes_fichier_info = std::fs::read_to_string("projets\\projets.info").unwrap();
     for ligne in lignes_fichier_info.lines(){
         if ligne.contains(&nom_projet){
-            let mut iteration = 0;
-            for champs in ligne.split_whitespace(){
+            //let mut iteration = 0;
+            let mut iterateur = ligne.split_whitespace();
+            iterateur.next();
+            return String::from(iterateur.next().unwrap());
+            /*for champs in ligne.split_whitespace(){
                 if iteration == 1{
                     return champs.to_owned();
                 }
                 iteration += 1;
-            }
+            }*/
         }
     }
     panic!("Impossible de trouver le chemin du projet.");

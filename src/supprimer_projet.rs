@@ -1,5 +1,6 @@
-pub fn supprimer_projet(nom : String){
+pub fn supprimer_projet(nom : String, chemin_projet : String){
     enlever_la_ligne_du_projet_dans_fichier_information(nom);
+    supprimer_fichier_projet(chemin_projet);
 }
 
 fn remplacer_fichier_information(nouveau_contenu_fichier : String){
@@ -26,12 +27,6 @@ fn enlever_la_ligne_du_projet_dans_fichier_information(nom : String){
         for ligne in std::fs::read_to_string("projets\\projets.info").unwrap().lines(){
             if !ligne.contains(&nom) {
                 contenu_fichier_sans_projet = contenu_fichier_sans_projet + ligne;
-            }
-            else{
-                let mut iterateur = ligne.split_whitespace();
-                iterateur.next();
-                let chemin_projet = String::from(iterateur.next().unwrap());
-                supprimer_fichier_projet(chemin_projet);
             }
         }
         remplacer_fichier_information(contenu_fichier_sans_projet.clone());
