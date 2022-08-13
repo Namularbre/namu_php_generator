@@ -14,6 +14,7 @@ struct Options{
 
 fn main() {
     let options = Options::from_args();
+
     if options.action == "nouveau" || options.action == "n" {
         let chemin_projet = options.parametres[0].clone();
         let nom_projet = options.parametres[1].clone();
@@ -42,12 +43,13 @@ fn main() {
         creer_modele::creer_modele(nom_modele, chemin_projet);
     }
     else{
-        println!("L'action choisi n'est pas reconnue :/");
+        panic!("L'action choisi n'est pas reconnue :/");
     }
 }
 
 fn trouver_chemin_projet(nom_projet : String) -> String{
-    let lignes_fichier_info = std::fs::read_to_string("projets\\projets.info").unwrap();
+    let lignes_fichier_info = avoir_contenu_fichier_information();
+
     for ligne in lignes_fichier_info.lines(){
         if ligne.contains(&nom_projet){
             let mut iterateur = ligne.split_whitespace();
@@ -55,5 +57,10 @@ fn trouver_chemin_projet(nom_projet : String) -> String{
             return String::from(iterateur.next().unwrap());
         }
     }
+
     panic!("Impossible de trouver le chemin du projet.");
+}
+
+fn avoir_contenu_fichier_information() -> String{
+    return std::fs::read_to_string("projets\\projets.info").unwrap();
 }
