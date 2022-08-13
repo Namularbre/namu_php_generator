@@ -5,6 +5,7 @@ mod creer_projet;
 mod creer_connexion_bdd;
 mod supprimer_projet;
 mod creer_modele;
+mod afficher_projet;
 
 #[derive(StructOpt)]
 struct Options{
@@ -41,6 +42,9 @@ fn main() {
         let nom_projet = options.parametres[1].clone();
         let chemin_projet = trouver_chemin_projet(nom_projet);
         creer_modele::creer_modele(nom_modele, chemin_projet);
+    }
+    else if options.action == "afficher_projets" || options.action == "projets"{
+        afficher_projet::afficher_projet();
     }
     else{
         panic!("L'action choisi n'est pas reconnue :/");
